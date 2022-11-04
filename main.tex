@@ -21,6 +21,7 @@
 \usepackage{midpage}
 \textwidth=450pt\oddsidemargin=0pt\headheight=15 pt
 \usepackage{subfiles}
+\usepackage{csquotes}
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection \ #1}{}}
@@ -30,7 +31,8 @@
 
 
 \usepackage{subfiles} % Best loaded last in the preamble
-
+\usepackage{biblatex} %Imports biblatex package
+\addbibresource{biblio/bibliography.bib} %Import the bibliography file
 
 \begin{document}
 
@@ -46,16 +48,9 @@ INDICE}}
 
 
 \clearpage{\pagestyle{empty}\cleardoublepage}
-\listoffigures                          
-
-\clearpage{\pagestyle{empty}\cleardoublepage}
-\listoftables                          
-
-\clearpage{\pagestyle{empty}\cleardoublepage}
 \addcontentsline{toc}{chapter}{Introduction}
 \section*{\LARGE{Introduction}}
-
-
+\subfile{sections/introduction}
 
 \chapter{Chapter one}
 
@@ -82,8 +77,12 @@ INDICE}}
 \section{Results}
 \section{Discussion}
 
-\chapter{Conclusion}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\addcontentsline{toc}{chapter}{Conclusion}
+\section*{\LARGE{Conclusion}}
 
-\bibliography{Bibliography}
+\printbibliography[heading=bibintoc,
+title={Bibliography}
+]
 
 \end{document}
