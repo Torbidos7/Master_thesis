@@ -22,6 +22,7 @@
 \textwidth=450pt\oddsidemargin=0pt\headheight=15 pt
 \usepackage{subfiles}
 \usepackage{csquotes}
+\usepackage{appendix}
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection \ #1}{}}
@@ -52,27 +53,25 @@ INDICE}}
 \section*{\LARGE{Introduction}}
 \subfile{sections/introduction}
 
-\chapter{Chapter one}
+\chapter{Digital images and Segmentation}
 
-\section{Images}
 \subfile{sections/images}
 
 \newpage
 
-\section{Segmentation}
 \subfile{sections/segmentation}
 
 \newpage
 
-\section{Convolutional Neural Networks (CNN)}
-
-\chapter{Chapter two}
+\chapter{Convolutional Neural Networks (CNN)}
+\subfile{sections/cnn}
+\chapter{Datasets and Methodologies}
 
 \section{Chosen Technique}
 \section{Dataset}
 \section{Pipeline}
 
-\chapter{Chapter three}
+\chapter{Results and Discussion}
 
 \section{Results}
 \section{Discussion}
@@ -81,8 +80,9 @@ INDICE}}
 \addcontentsline{toc}{chapter}{Conclusion}
 \section*{\LARGE{Conclusion}}
 
-\printbibliography[heading=bibintoc,
-title={Bibliography}
-]
+\appendix
+\chapter{Convolution}
+\subfile{sections/convolution}
+\printbibliography[heading=bibintoc, title={Bibliography}]
 
 \end{document}

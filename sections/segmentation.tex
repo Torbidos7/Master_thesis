@@ -2,22 +2,195 @@
 \usepackage[english]{babel}
 \graphicspath{{\subfix{../images}}}
 \begin{document}
+\section{Segmentation}
+
+Since digital images are becoming one of the main source of information for to visual medical diagnosis, it is crucial to focus on techniques and algorithms which are able to analyze and to extract such useful data from them.
+
+The three main objectives of this approach, which can be named computer-aided diagnosis (CAD), were stated in \cite{automated_segm_tech}:
+\begin{itemize}
+    \item automate processes in order to get the same result accuracy among many patients;
+    \item speed up the analysis in the medical field;
+    \item make communication faster.
+\end{itemize}
+
+In \cite{segmentation_review_1} Patil and Deore  described the overall procedure that enables to collect meaningful information from image data, as a three step process: starting from processing, passing through analysis and finally ending with image understanding. The authors pointed out that the first and most critical step of image analysis is the segmentation: it is fundamental to understand its meaning and the different techniques that are available to perform such important task.
+
+\subsection{Definition of segmentation}
+
+Segmentation has the role of dividing the image into sub-regions in order to detect different objects \cite{automated_segm_tech}, most of the times such regions share common characteristics such as color, texture, shape or brightness.
+
+In \cite{sgmentation_1_survey}, Pham \textit{et al} described the results of image segmentation as non-overlapping regions considered to be homogeneous with respect to some of the characteristics above, following this consideration the segmentation problem can be described with sets.
+
+Defining $I$ as the image domain, the segmentation procedure aims at finding the sets $s_{k}\subset I$ such that the union of all subsets gives back the whole image:
+
+\begin{equation}
+    I = \bigcup_{k=1}^{K} s_{k}
+\end{equation}
+
+where $s_{i}\cap s_{j}=\emptyset$  for $i \not = j$. Thus, the segmentation divides pixels into $K$ subsets called classes.
+
+The attribution of a meaning to each one of them can be performed after the segmentation and it is defined as labeling. If the total number of classes is two, the labeling process could be trivial and therefore this would imply the presence of object and background as the detected classes.   
+
+
+\subsection{Segmentation techniques}
+
+Different segmentation techniques were developed in order to find the best approach to detect the $s_{k}$ subsets which compose the image. Unfortunately this task is difficult and it is highly dependent on the data provided, in fact there is not a universally accepted method able to segment all types of images and for the same image different algorithms achieve dissimilar results.
+
+As already mentioned in the previous section, segmentation classes share similar characteristics such as shape, intensity or texture. The first objective of segmentation is to exploit the visual correspondence of pixels belonging to the same class. Following this reasoning, two main categories of segmentation techniques arise \cite{segmentation_review_1}:
 
 \begin{itemize}
-
-    \item Why is segmentation important for the medicine (and different applications?);
-    \item Different tecniques for segmentation (think abaout simple solutions);
-    \item Artificial Neural Networks;
-   
+    \item \textbf{discontinuities detection}: the aim of these techniques is to spot differences in intensity among pixels and their neighborhood. As second step, they are able to reconstruct contours of different regions. The most common algorithms are those of
+    \textit{edge detection};
+    \item \textbf{similarities detection}: in this category the main goal is to divide images into sub regions which are considered to belong to the same class based on some general criteria. Algorithms which are included in this group are \textit{threshold} and \textit{region-based} techniques;
 \end{itemize}
-computed aided diagnosis (intro p1), aims of segmentation p5, list of different methods p7, ANN supervised and unsupervised p 10-11 [(jmedPhys3513...) Automated medical image segmentation techniques \cite{automated_segm_tech}]
 
-why to segment, definition of segmentation using sets, labelling and pixel classification  (pag.2) [segmentation-1, \cite{sgmentation_1_survey}]
+In addition to this categorisation, Kang \textit{et al.} defined in \cite{kang2009comparative} a further class called \textbf{special-theory based segmentation}, which incorporates those algorithms that derive from other theories, such as  morphology, fuzzy mathematics, artificial intelligence etc.
 
-different type of segmentation [the comparative research on image segmentation algorithms , file stampato]
+In the following paragraphs, it will be presented an overlook of all these techniques, explaining how they work and what are their advantages and disadvantages.
 
-3 processes involved as processing, analisys and understanding, different typer of image segmentation[Medical image segmentation a review (V"I1201306...) \cite{segmentation_review_1}]
+%aims of segmentation p5, list of different methods p7, ANN supervised and unsupervised p 10-11 
+%different type of segmentation [the comparative research on image segmentation algorithms , file stampato]
 
 
-chosen CNN because of high non linearity of the problem , pro e cons of thresholding(i.e. not uniform bacground [usefull in trheshold], not clear edges[useful in edge detection]
+
+
+\subsubsection{\large{Edge-based segmentation}}
+
+Edge is defined as the thinnest set of pixels which composes the boundaries of different segmentation regions \cite{kang2009comparative}. Belonging to the discontinuity detection category, it exploits the dissimilarities on colors, intensities or shapes in order to highlight meaningful separations among pixels.
+
+Edge detection can be performed according to two approaches: \textit{histogram} and \textit{gradient} techniques.
+
+\begin{description}
+\item[Histogram] : histogram algorithm aims at selecting the threshold intensity value $I_{t}$ for which different regions are divided. Ideally, the intensity distributions of different objects in the image are well separated and, therefore, considering the value between two maxima is the key for a precise edge detection; 
+\item[Gradient] : gradient-based methods are generalized in \cite{automated_segm_tech} by Sharma \textit{et al.} in a five step algorithm which is common to the whole category:
+          \begin{enumerate}
+               \item apply the gradient operator to the image function. For an image $f(x,y)$ the gradient at position $(x,y)$ is defined as the vector:
+               \begin{equation}
+               \bigtriangledown f = \begin{bmatrix}
+                                            \frac{\partial f}{\partial x} \\
+                                            \frac{\partial f}{\partial y}
+                                        \end{bmatrix}
+               \end{equation}
+               \item measure the magnitude of the gradient vector in the form of:
+               \begin{equation}
+                     \bigtriangledown f = \left[ \frac{\partial f}{\partial x}^{2} + \frac{\partial f}{\partial y}^{2} \right]^{1/2}
+               \end{equation}
+               \item keep edges with a gradient magnitude greater than a certain threshold $I_{t}$.  Higher value of magnitude should be placed on the position of stronger edges;
+               \item retrieve edge position in the image and check their reliability with respect to previous or subsequent edges;
+               \item repeat step 3 and 4, even changing values for the threshold, until an acceptable convergence is achieved.
+           \end{enumerate}
+\end{description}
+These are the basic steps for edge detection by calculating the gradient vector of the image. On the basis of the previous general scheme, several methods were developed and upgraded through filter application or metrics evaluation.
+
+One of the most renowned is Canny algorithm \cite{Canny}. It follows the five point algorithm with some improvements: firstly, it applies a  smooth Gaussian filter to the image and, at the end, it picks only edge points which are connected with other strong edges. Canny approach allows very good performances in spotting real edges and in reducing noise problems\cite{saif2016gradient}.
+
+The two main drawbacks of edge-detection segmentation are the ones which were attempted to be overcame with Canny edge: noise, false edge detection. In fact, noise could affect badly performances and induce the detection of weak edges which don't represent any meaningful separation among regions.
+
+
+
+\subsubsection{\large{Threshold segmentation}}
+ 
+Regarded as the most simple segmentation algorithm, the threshold segmentation is widely used in image processing thanks to the low computational power required. 
+
+Usually threshold methods are able to extract the background from the foreground producing a binary output by analysing the grey-level histogram of the image. Thus, such techniques works very well with high contrast grey-scale images \cite{niu2019research-threshold-segmentaton}. 
+
+Given a grey-scale image $f(x,y)$ and a threshold intensity $I_{t}$ the resulting binary image $g(x,y)$ shows the following pixel values:
+
+\begin{equation}
+    g(x,y) = \begin{cases}
+                1 \qquad f(x,y) \ge I_{t} \\
+                0 \qquad f(x,y) < I_{t} 
+             \end{cases}
+\end{equation}
+
+The resulting pixel will have value of 1 if their original intensities $f(x,y) \ge I_{t}$ (considered as objects), on the other hand it will have 0 when $f(x,y) < I_{t}$ considered as background.
+
+Depending on how many thresholds are defined, these techniques are distinguished as \cite{kang2009comparative}:
+
+\begin{description}
+\item[global threshold] : when the $I_{t}$ value is uniform for all the image, producing only two classes. The most representative method of this group is Otsu \cite{otsu} algorithm. In 1979 he proposed a strategy to select the best threshold value as:
+\begin{equation}
+    I_{t} = arg_{k \in [0, 255]}max(\sigma^{2}(k))
+\end{equation}
+
+where $\sigma^{2}(k))$ is the variance calculate as a combination of mean, $0$ and  $1^{st}$ order momentum of the histogram distribution;
+\item[local threshold] : the original image is divided into small regions, then a reasonable threshold value $I_{j}$ is properly selected according to each histogram region. After this procedure some filters are applied to uniform the result;
+\item[dynamic threshold] : as in the local threshold the image is partitioned into sub regions which are processed by selecting multiple thresholding levels. This is the most generic variant of these methods and it needs several pre and post processing steps to be included. 
+\end{description}
+
+The main limitations of the threshold techniques are that, in general, the threshold $I_{t}$ is chosen:
+\begin{itemize}
+    \item manually based on some prior knowledge;
+    \item automatically through extraction of image information.
+\end{itemize}
+
+In both cases the selection of an appropriate value is not easy and it needs a lot of fine tuning to be considered effective\cite{automated_segm_tech}. Moreover it cannot be applied to color images for each channel at the same time and, by working with the histogram, it loses spatial information which make this method susceptible to noise \cite{segmentation_review_1}.
+
+
+\subsubsection{\large{Region-based segmentation}}
+
+Region-based techniques are different from the previous: they are able to define regions in the image, grouping or separating pixels while following a merging/splitting criteria\cite{kaganami2009region-based}. They try to spot homogeneity among pixel, searching for similar properties (most commonly grey levels) by iteratively checking the criteria conditions to add or subtract pixels from the current region.
+
+Once the homogeneity criteria $C$ is set, methods are developed in two opposite specifications:
+\begin{description}
+\item[region growing] :  some "seeds" pixels are selected in the image. Neighboring pixels are grouped with the previous ones according to the criteria (i.e. similar grey level or colors) until a predetermined stopping condition is triggered;
+\item[region splitting and merging] : the image is divided into a set of disconnected regions, then adjacent regions are checked, through $C$, to belong to the same class\cite{segmentation_review_1}. This methods can be described as a two step process: initially the image is split in  
+into sets as long as $C$ is false; when no more division can be performed, connected region are controlled and, if their union satisfies $C$, they are merged. 
+\end{description}
+
+The region-based algorithms show some risks of segmenting regions which belong to the same class or keeping together non-uniform sets of pixels. A combination with edge detection in conjunction with optimal selection of criteria seem to be the solution to overcome these problems \cite{automated_segm_tech}.
+
+\subsubsection{\large {Special-theory based segmentation}}
+
+The last group of techniques are defined as special-theory based, since they apply knowledge belonging to different fields to the task of segmentation. 
+
+These methods can be implemented with supervised or unsupervised algorithms: the first ones require human interaction during all the process of segmentation for labelling or adaptation of model parameters; on the other hand, the last ones are able to extract meaningful information directly from pure data without needing external intervention. 
+ 
+Below are described \textit{clustering} and \textit{neural networks (NNs)}, respectively belonging to unsupervised and supervised categories.
+
+
+\subsubsection{{Clustering}}
+
+Clustering algorithms try to partition data points into a pre-determined number of sets, named clusters.
+They exploits the projection of information into an \textit{n-dimensional} space called \textit{latent space}\cite{automated_segm_tech}. 
+This peculiar space assigns a position to each point based on numerous features (grey-level, texture, color etc.). 
+
+Then a similarity metric $S_{m}$ is defined in order to calculate the $n-dimensional$ distance among points.
+
+Clustering try to maximize $S_{m}$ between same class pixels and to minimize $S_{m}$ separated classes in an iterative procedure \cite{clustering}.
+
+The most known clustering method is K-means algorithm \cite{k-means} which fixes $k$ random clusters with their centroids in the latent space. Each data point is assigned to the closest cluster and the centroids are calculated again. This procedure repeats until no further changes are achieved. An integration of K-means with knowledge coming from other fields is Fuzzy C-means algorithm \cite{fuzzy-c-means} which, for each data point, assigns a certain probability to belong to different clusters instead of being included it into a single one.
+
+These techniques show high sensitivity to initial partition and to stopping criteria, leading to possible local minima solutions \cite{automated_segm_tech}; in such cases different algorithms need to be tried.
+
+\subsubsection{{Neural networks}}
+
+Neural networks are composed by a huge number of elements (neuron) which  are able to process data and solve difficult problems. These elements are inspired to the learning procedure of biological neurons, the first published article, about a possible implementation of artificial neurons, dates back to the 1940's \cite{mcculloch1943logical-neural-network}. However the popularity of these techniques grown only in the last two decades, thanks to increasing computational power and higher amount of available data. 
+
+NNs in facts are able to generalize problems, learning adaptively from the data and they can achieve real time solutions thanks to their parallel configuration \cite{automated_segm_tech}.
+
+Since it is a supervised method, neural networks need some prior information to be able to compare their results  with a \textit{ground truth}. During neural network segmentation, the image is mapped into the network, which process the information embedded in the pixel, producing a segmentation result. The difference between the result and the ground truth is evaluated by a chosen precision metric. The learning process comes from the updating of weights inside the network in order to minimized/maximize the precision metric.
+
+The main drawbacks of this techniques are: 
+\begin{itemize}
+    \item high number of data needed;
+    \item long computational times for training;
+    \item preliminary segmentation information (i.e. manually segmented mask).
+\end{itemize}
+Given these problems NNs are able to perform robust results even in presence of noise 
+and their non linear degree of processing allow them to model almost any problem \cite{kang2009comparative}.
+
+
+
+\subsubsection{Chosen technique}
+
+In this work neural network were chosen as segmentation technique due to several reasons.
+
+
+Segmentation task could be an highly non linear problem and some of the digital images are characterized by non-uniform background, blurred edges and noise: these characteristics make very difficult to use techniques such as threshold, edge-base or region-base.
+
+Moreover the possible real time application of the algorithm during clinical practice clarify that neural networks are the perfect method for this study.
+
+In the following chapter, the chosen specification of NNs (Convolutional Neural Networks, CNNs) will be explained in detail.
+
 \end{document}
