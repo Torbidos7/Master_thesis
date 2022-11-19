@@ -3,36 +3,34 @@
 \usepackage{graphicx}
 \graphicspath{{images/}}
 
-\usepackage{blindtext}
 \usepackage{newlfont}
 \usepackage{color}
 \usepackage{fancyhdr}
+\usepackage{csquotes}
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{latexsym}
-\usepackage{amsthm}
 \usepackage{float}
-\usepackage{eurosym}
 \usepackage{pm-isomath}
 \usepackage{array}
 \usepackage{subfig}
 \usepackage{midpage}
 \textwidth=450pt\oddsidemargin=0pt\headheight=15 pt
-\usepackage{subfiles}
-\usepackage{csquotes}
 \usepackage{appendix}
+\usepackage{subfiles} % Best loaded last in the preamble
+\usepackage{biblatex} %Imports biblatex package
+
+\newcommand{\quotes}[1]{``#1''}
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection \ #1}{}}
-\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
-\cfoot{}
+%\rhead[\fancyplain{}{\bfseries\leftmark}]{\fancyplain{}{\bfseries\thepage}}
+%\cfoot{}
 \linespread{1.3}
 
 
-\usepackage{subfiles} % Best loaded last in the preamble
-\usepackage{biblatex} %Imports biblatex package
 \addbibresource{biblio/bibliography.bib} %Import the bibliography file
 
 \begin{document}
@@ -42,47 +40,52 @@
 \end{titlepage}
 
 
-\clearpage{\pagestyle{empty}\cleardoublepage}
+\clearpage{\pagestyle{empty}}
 \tableofcontents               
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries
 INDICE}}
 
 
-\clearpage{\pagestyle{empty}\cleardoublepage}
+\clearpage{\pagestyle{empty}}
 \addcontentsline{toc}{chapter}{Introduction}
-\section*{\LARGE{Introduction}}
+\chapter*{Introduction}
 \subfile{sections/introduction}
 
-\chapter{Digital images and Segmentation}
 
+\chapter{Images}\label{chap:images}
 \subfile{sections/images}
 
 \newpage
 
+\chapter{Radiomics and Segmentation}\label{chap:segmentation}
+\subfile{sections/radiomics}
 \subfile{sections/segmentation}
 
-\newpage
 
-\chapter{Convolutional Neural Networks (CNN)}
+\chapter{Artificial Neural Networks}\label{chap:ann}
 \subfile{sections/cnn}
-\chapter{Datasets and Methodologies}
 
-\section{Chosen Technique}
-\section{Dataset}
-\section{Pipeline}
+\chapter{Materials and Methods}\label{chap:methods}
+\subfile{sections/methods}
 
-\chapter{Results and Discussion}
+\chapter{Results}\label{chap:results}
+\subfile{sections/results}
 
-\section{Results}
-\section{Discussion}
 
-\clearpage{\pagestyle{empty}\cleardoublepage}
+\chapter{Discussion}
+\subfile{sections/discussion}
+
+\clearpage{\pagestyle{empty}}
 \addcontentsline{toc}{chapter}{Conclusion}
-\section*{\LARGE{Conclusion}}
+\chapter*{Conclusion}
+\subfile{sections/conclusion}
+\pagenumbering{gobble} %stop numbering pages
+\printbibliography[
+heading=bibintoc,
+title={Bibliography}
+] 
 
-\appendix
-\chapter{Convolution}
-\subfile{sections/convolution}
-\printbibliography[heading=bibintoc, title={Bibliography}]
+
+
 
 \end{document}

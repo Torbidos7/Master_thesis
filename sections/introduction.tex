@@ -3,15 +3,32 @@
 \graphicspath{{\subfix{../images}}}
 \begin{document}
 
-\begin{itemize}
 
-    \item usefull to automatize study on medical images [Medical image segmentation a review (V"I1201306...) \cite{segmentation_review_1}]
-   \item why to segment \cite{sgmentation_1_survey};
-   
-    \item cite possibe mobile implementations;
-    \item
-aims of segmentation in medicine p5-6
-[(jmedPhys3513...) Automated medical image segmentation techniques \cite{automated_segm_tech}]
+Wound management is a fundamental task in standard clinical practice. 
+Automated solutions already exist for humans, but there is a lack of applications on wound management for pets.
+The importance of a precise and efficient wound assessment is helpful to improve diagnosis and to increase the effectiveness of treatment plans for the chronic wounds \cite{anisuzzaman2022image-wound-review}.
+
+The present thesis work aims to fit in the wide radiomics framework: analysing natural light-reflected images of animal and human wound, we aim to fill the first crucial phase in the radiomics pipeline, the image segmentation.
+Many features, like size and shape of the wound areas, represent fundamental quantities for the monitoring of wound healing status and consequent patient’s prognosis \cite{gethin2006importance-wound-measurement}.
+The extraction of quantitative features able to characterize the lesion in exam starts from a precise identification of the wound region of interest, i.e., the wound segmentation.
+
+In Chapter \ref{chap:images} of the present thesis, the mathematical representation of digital images is proposed in order to give an overview of the main causes of digital image degradation and to explain how images can be stored and processed by computers.
+In Chapter \ref{chap:segmentation}, a review of the possible segmentation techniques is summarized to validate the choice of using Convolutional Neural Networks method, described in Chapter \ref{chap:ann}.
+
+The goal of the research was to propose an automated pipeline capable of segmenting natural light-reflected wound images of animals. Two different datasets were used to fulfill this scope:  
+\begin{itemize}
+    \item the human \textit{Deepskin} dataset, composed by images acquired during clinical practice and built an annotated wound image dataset consisting of 1564 ulcer images from 474 patients.
+    Only a small part of this large amount of data was manually annotated by experts; 
+    \item the animal \textit{PetWound} dataset, a total of 290 selected images including spontaneous wounds of owned dogs and cats that were brought to the Veterinary Hospital of the Department of Veterinary Medical Sciences (UniBo) for the treatment of the wound and eventually other concomitant lesions.
+    None of \textit{PetWound} images were manually annotated.
 \end{itemize}
+
+The reason behind the usage of two datasets is to propose a pipeline which exploits \textit{Deepskin} for a Transfer Learning procedure.
+To perform a robust image segmentation, without a labelled ground truth, we started from a model trained on a human wound image dataset.
+After transfering the information embedded in that model to \textit{PetWound} dataset, we applied a combination of Active Learning and Semi-Supervised Learning procedure to fully automate the process of wound segmentation in animal images, starting from zero manually annotated image.
+Moreover, the same procedure was applied to a model with less parameters, perfectly fitted to smartphone applications. 
+The details of the training strategy are reported in Chapter \ref{chap:methods}, whereas the results are shown in Chapter \ref{chap:results}.
+
+
 
 \end{document}

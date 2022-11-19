@@ -1,0 +1,44 @@
+\documentclass[../main.tex]{subfiles}
+\usepackage[english]{babel}
+\graphicspath{{\subfix{../images}}}
+\begin{document}
+In this work we proposed the application of an ASSL training strategy in combination with TL for the automated segmentation of pet wound images. We confirmed the effectiveness of ASSL in labelling large amount of data with a minimal human effort. 
+The introduction of TL in the training pipeline allows us to start the ASSL without an initial manually annotated dataset, further reducing the workload required by the clinicians. 
+In the proposed procedure the experts evaluation consists only of an accept/discard method, minimizing the time and the effort required for the generation of high-quality segmentation masks.
+
+\subsection{Deepskin}
+
+The ASSL implementation for EfficientNet model trained on Deepskin produced remarkable results: starting from a relatively small core set of manually annotated samples, in only four rounds of training we have been able to obtain annotations for more than 90\% of the available images. 
+
+These segmentations were used as ground truth for the training of MobileNet model, which achieved IoU and $F_1$ scores of 0.89 and 0.94, respectively, after 100 epochs of training, showing robust and comparable results with respect to EfficientNet.
+
+The goodness of the results, on different types of wounds, is showed in Figure \ref{fig:deep-visual-results}: even if we can spot some differences in the borders, the wound area is well defined with both models and there are no spots inside the selected region.
+The results on Deepskin represent a reliable starting point for the TL on Petwound.
+
+\subsection{Petwound}
+
+TL technique was applied to perform the Round 0 segmentation on Petwound for both model. 
+This technique reached a total 143 correctly annotated images with EfficientNet and 113 images with MobileNet, corresponding to 49\% and 39\% of images belonging to Deepskin and Petwound datasets, respectively. 
+The application of TL allowed the models to be trained on Petwound dataset with no annotated images at all.
+This result could represent a fundamental starting point for future model development, when considering two related datasets.
+
+The EfficientNet model after four rounds of training achieved an $F_1$ score of 0.98 and an IoU score of 0.96, confirming the goodness of the generated segmentations.
+As showed in Table \ref{tab:results-eff-petwound} the model performances are consistent through the rounds of ASSL training with a slight improvement of the two considered metrics with respect to the values of the initial round. 
+We must consider that the model performance could be positively biased because at each round we were only including images for which we knew that the model performed well in the previous round.
+However, the positive trend of the correctly segmented images along the ASSL rounds shows that the model is improving its prediction and generalization capabilities. 
+The robustness of our training pipeline is enforced by the fact that the EfficientNet U-Net model trained on the Deepskin dataset generalized well also on the PetWound dataset, correctly annotating almost the 50\% of the available images without any fine-tuning of the model.
+
+The results obtained during the ASSL using the MobileNet U-Net model were not as good as the ones obtained with the EfficientNet U-Net one.
+We argue that the MobileNet backbone could be not powerful enough to perform this complex segmentation task in the initial stages of ASSL, when the number of available samples is extremely limited. 
+The performance improvement of MobileNet model after the training on the annotation produced by EfficientNet suggests that a simpler model as the MobileNet one could need a greater number of training samples to learn the meaningful characteristics of the images in complex contests as the one of this study.
+This result goes against the classical belief that optimal number of parameters involved in a deep learning model scales with the quantity of available data: the introduction of TL in the pipeline seems to remedy to this problem, providing a sufficiently good starting point for the correct generalization on new data.
+
+To our knowledge, there are no available segmentation datasets of pet-wound images, thus, the PetWound images we collected, and the corresponding segmentations produced in this work could be used as a valid starting point for the application of deep learning pipelines on similar studies. An ASSL strategy having the PetWound dataset as starting point could easily produce hundreds of other pet-wound annotated images with minimal effort.
+The main limitation of our dataset is the restricted number of available images and the inclusion of only two different pet species, namely dogs and cats. The expansion of the dataset with wound images of other pet species would be beneficial for the generalizability of the study. On the other hand, a strength of our dataset is the high heterogeneity of the included images, presenting different resolutions, light conditions, and backgrounds, making the dataset suitable for real clinical practice scenarios.
+\\
+\\
+Considering total results on both datasets and the benefits of the ASSL procedure, we can assert that this procedure could drastically improve the availability of huge, annotated datasets with a minimum time-cost required by expert clinicians. 
+In the proposed procedure the experts evaluation consists only of an accept/discard method, while the concrete segmentation is performed by the model predictions.
+With the ASSL procedure the production of hundreds of viable pixel-wise segmentations could be performed in few hours of evaluation, whereas, with manual segmentation, clinicians could spend up to couple of hours for the most difficult wound images.
+Moreover with the addiction of TL training strategies, experts didn't have to produce manual segmentation for any of the images on the Petwound dataset, notably reducing the effort needed. 
+\end{document}
