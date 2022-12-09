@@ -17,6 +17,7 @@
 \usepackage{array}
 \usepackage{subfig}
 \usepackage{midpage}
+\usepackage{epigraph}
 \textwidth=450pt\oddsidemargin=0pt\headheight=15 pt
 \usepackage{appendix}
 \usepackage{subfiles} % Best loaded last in the preamble
@@ -41,6 +42,20 @@
 
 
 \clearpage{\pagestyle{empty}}
+
+\chapter*{}
+\pagenumbering{gobble}
+\begin{midpage}
+\begin{flushright}
+\textit{To my dear friend Andrea.}
+\end{flushright}
+\end{midpage}
+
+
+\pagenumbering{roman}
+\subfile{sections/abstract}
+\newpage
+
 \tableofcontents               
 \lhead[\fancyplain{}{\bfseries\thepage}]{\fancyplain{}{\bfseries
 INDICE}}
@@ -49,6 +64,7 @@ INDICE}}
 \clearpage{\pagestyle{empty}}
 \addcontentsline{toc}{chapter}{Introduction}
 \chapter*{Introduction}
+\pagenumbering{arabic}
 \subfile{sections/introduction}
 
 
@@ -79,6 +95,8 @@ INDICE}}
 \addcontentsline{toc}{chapter}{Conclusion}
 \chapter*{Conclusion}
 \subfile{sections/conclusion}
+\chapter*{Ringraziamenti}
+\subfile{sections/ringraziamenti}
 \pagenumbering{gobble} %stop numbering pages
 \printbibliography[
 heading=bibintoc,

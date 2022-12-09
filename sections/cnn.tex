@@ -26,7 +26,7 @@ As shown in Figure \ref{fig:perceptron}, it takes a vector of inputs $x_i$ produ
 In the Rosenblatt configuration, the weighted sum of inputs $x_i$ multiplied by the neuron parameters called weights $w_i$ is added to a bias \textit{b}. 
 The neuron output is a binary number which depends on the sign of the sum. 
 The weights and the bias, which could assume positive or negative values, are the trainable parameters of the model.
-They are iteratively changed during the training procedure: if we know what the output for a defined set of inputs $x_{1} \dots x_k$ should be, we can define a cost/error function to estimate the distance from the model result to the known one. 
+They are iteratively changed during the training procedure: if we know what the output for a defined set of inputs $x_{1} \dots x_k$ should be, we can define a cost/error/loss function to estimate the distance from the model result to the known one. 
 In this way the model can update its parameters in order to reach an optimal value of the cost function.
 
 As simple as it could appear, the first artificial neuron resembles the functioning of the modern ones with few changes: in modern models numerous  error functions exist and they are chosen according to the task to be solved; moreover, the output of a single neuron is calculated with different \textit{activation functions} which take the previous sum as parameter.
@@ -63,7 +63,7 @@ The basic mechanisms of CNNs, responsible for the properties described above, ar
 Convolutional layers are composed by several planes called \textit{feature/activation maps}, each of those is calculated by a linear combination of parameters with a local region of the input image.
 Basically, the single feature map detects a particular pattern at different locations in the image, achieving the aim for local receptive fields.
 The parameter sharing is set based on the consideration that patterns are likely to appear in different regions of the same image \cite{o2015introduction-cnn}, thus the same weights are used to calculate the full activation map: having each map characterized by its own set of parameters allow the model to avoid an exponential increase of weights number. 
-Lower number of parameters could elude the risk of \textit{over fitting}, a classical behaviour of classifiers with high number of parameters: the model will fit the noise in the data by adapting to peculiar patterns of training set, loosing the ability to generalize with a robust predictive rule \cite{dietterich1995overfitting}.
+Lower number of parameters could elude the risk of \textit{over fitting}, a classical behaviour of classifiers with high number of parameters: the model will fit the noise in the data by adapting to peculiar patterns of training set, losing the ability to generalize with a robust predictive rule \cite{dietterich1995overfitting}.
 The sub-sampling stage is a  gradual reduction in spatial dimension of the image, keeping the most informative features calculated in the activation maps without adding more weights to the model.
 By stacking several layers together, we appreciate a huge reduction of the spatial dimensions of the image which is compensated by a progressive growth of the feature planes.
 
@@ -75,7 +75,7 @@ The fundamental layer in CNNs is the convolutional one. It works by the applicat
 The step size of the sliding path of the kernel is called \textit{stride} and it affects the final output dimension.
 The $N\times N$ filter applied  performs a scalar product with a $N\times N$ pixels region of the image.
 According to their compositions, kernels are able to highlight specific patterns/orientations inside the image, producing an activation map for each filter applied. 
-In some cases techniques of  \textit{zero padding} are used as follows: the borders of the image are enlarged with an array of $0$, in order to end up with greater output dimensions in order to keep borders information in further layers.
+In some cases techniques of  \textit{zero padding} are used as follows: the borders of the image are enlarged with an array of $0$ to end up with greater output dimensions in order to keep borders information in further layers.
 
 
 A simple formula to calculate the activation map dimension after the convolution layer is presented in \cite{o2015introduction-cnn}, considering a squared $M\times M$ pixels input image the output spatial dimension of the map is:
@@ -89,7 +89,7 @@ where $N$ is the kernel dimension, $Z$ is the number of zero padding applied and
 
 Pooling layer aims to reduce the spatial resolution of the image without increasing the number of parameters of the model. 
 It takes activation maps as input and it applies a spatial reduction function. 
-The most ones used are average and max function: using a $N\times N$ kernel, such operations are defined, respectively, \textit{average pooling} or \textit{max pooling}.
+The most used are average and max function: using a $N\times N$ kernel, such operations are defined, respectively, \textit{average pooling} or \textit{max pooling}.
 In both cases a $N\times N$ pixels portion of the activation map is condensed into a single pixel of the pooling layer with the average/max value of the $N^2$ pixels selected, according to the function chosen.
 In some case, the pooling operation aims at working with non overlapping regions: to perform a sliding with a $N\times N$ kernel, analysing therefore the used stride is $N$.
 
@@ -129,7 +129,7 @@ The image reconstruction from the tensor representation is calculated by the dec
 
 In ideal situations, network training is performed with many labeled images as reference point for the calculation of the cost function. 
 Unfortunately, as already mentioned in \ref{sec:radiomic-pipeline}, manual image segmentation must be executed by experts and it requires a lot of effort and time.
-Moreover, labelled datasets able to train a full network, composed by millions of parameters, have to be very large. 
+Moreover, labelled datasets used to train a full network, composed by millions of parameters, have to be very large. 
 
 Different learning procedure have been proposed to  overcome the known problem of low/absent labelled data for training.
 Before considering such learning solutions, there is a simple solution that focuses on enlarging the quantity of training data to improve performances and to address the problem of over fitting.
@@ -244,6 +244,7 @@ The manifold assumption implies the existence of multiple manifolds in the featu
 Discovering manifolds could ease the classification of unlabelled data points.\\
 \\
 It is difficult to evaluate if the application of SSL methods is useful \textit{a priori}. Unlabelled data could improve performances only if they carry information which is not embedded in the labelled ones.
+In the present work we consider the previous SSL assumptions to be true for the feature space of wound pixels, moreover the obtained results strengthen this belief by confirming the proximity of wound pixels with respect to the various background ones.
 A successful application of SSL is the one which combines SSL with Active Learning (AL), defined as Active Semi-Supervised Learning (ASSL)
 \subsubsection{Active Semi-Supervised Learning}
 

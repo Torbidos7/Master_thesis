@@ -4,17 +4,17 @@
 \begin{document}
 
 \section{Images as data}
-Images are now belief to play a key role in the diagnosis procedure and, overall, in the medical field. When it comes to visual diagnosis of a patient all information needed by the medical doctors can be stored in a digital representation thanks to digital images. 
-The advantages in using digital images are numerous: they are immediately available and they can be stored easily with a consistent image quality and their post-processing is handable with computers \cite{journal_of_dermatology}.  
+Images are now belief to play a key role in the diagnosis procedure and, overall, in the medical field. When it comes to visual diagnosis of a patient all information needed by the medical doctors can be stored in a digital representations thanks to digital images. 
+The advantages in using digital images are numerous: they are immediately available, they can be stored easily with a consistent image quality and their post-processing is handable with computers \cite{journal_of_dermatology}.  
 Some crucial information and markers are detected by clinical experts during images evaluation.
 Clinical imaging departments could produce even hundreds of thousands of images per year\cite{info_in_images}. However, such information could be hard to quantify with visual analysis, so clinicians necessitate an automatic system to produce accurate and fast results from images.
 
 \subsection{Definition of digital images}\label{sec:definition-of-images}
 
 Digital images could be easily defined as a discrete numerical representation of an object. In order to understand how a complex object could be represented by a set of numbers one has to understand what are the processes involved in the image formation and how it is stored as mere numbers.
-The real phenomenon which undergoes the digital image formation happens in the digital camera, where the light reflected by the object is focused onto a grid of photosensors which acquire the light intensity and record it as an array of picture elements (\textit{pixels}) \cite{bourne2010fundamentals}.
+The real phenomenon which undergoes the digital image formation happens in the digital camera, where the signal coming from the object is focused onto a grid of photosensors which acquire the intensity and record it as an array of picture elements (\textit{pixels}) \cite{bourne2010fundamentals}.
 
-The general aim of the digital image acquisition is to transform the continuous light signal into a discrete array of numbers which can be processed by computers \cite{image_acquisition_article}. This procedure is characterized by several components which have a contribution on the output images:
+The general aim of the digital image acquisition is to transform the continuous electromagnetic signal into a discrete array of numbers which can be processed by computers \cite{image_acquisition_article}. This procedure is characterized by several components which have a contribution on the output images:
 
 \begin{itemize}
     \item signal coming from the object;
@@ -48,7 +48,7 @@ A method to measure these inevitable spatial distortions is to display the \text
 \subsubsection{Matrix representation}\label{sec:matrix_representation}
 
 The distortions explained in the previous section remains still valid, but, for sake of simplicity, we assume that it is possible to acquire a perfect continuous signal.
-From a mathematical standpoint we can see the digital image as a quantization of a  function of two spatial continuous dimensions $g(s,t)$ which represents the continuous signal coming from the light reflected bt the object.
+From a mathematical standpoint we can see the digital image as a quantization of a  function of two spatial continuous dimensions $g(s,t)$ which represents the continuous signal coming from the object.
 Thanks to the photosensors this continuous signal is sampled into a 2-D array containing $M$ rows and $N$ columns.
 Therefore, the digital image could be represented as a function $f(x,y)$ where $(x,y)$ are discrete spatial coordinates which compose the spatial domain of the image \cite{digital_image_processing_gonzales}:
 
@@ -73,7 +73,7 @@ Following the same formalism and considering an $M\times N$, the grey-level hist
     h(i_{j})=n_{j} 
 \end{equation}
 where $i_{j}$ is one of the image grey-level values and $n_{i}$ is the sum of pixels with intensity $i_{j}$.
-The histogram loses all the spatial information of the image, but, if it is normalized by the total number of pixels $M\times N$, it represents the statistical distribution of the grey-levels. 
+The histogram loses all the spatial information of the image, but, if it is normalized by the total number of pixels $M\times N$ pixels image, it represents the statistical distribution of the grey-levels. 
 
 Looking at the Figure \ref{fig:histo}, it is possible to understand which information is embedded in the grey-level histogram. For dark images the distribution is shifted towards low values; on the contrary, bright scenes show a considerable concentration on the right side of the x-axis (higher values). Moreover, the image contrast can be associated with the spread of the distribution along all the intensities.
 
@@ -89,30 +89,30 @@ This approach becomes useful when the analysis focuses  on image brightness and 
 
 \subsubsection{Spatial resolution and dynamic range}
 
-Given the matrix formulation of Equation \ref{eq:image_matrix}, one could easily understand the importance of the choice of grid elements' number and dimensions as well as the number of discrete levels for the intensity representation.
+Given the matrix formulation of Equation \ref{eq:image_matrix}, one could easily understand the importance of the choice of grid elements number and dimension as well as the number of discrete levels for the intensity representation.
 
 The number of pixels of an image determines the spatial quality of the overall outcome, the procedure to select the appropriate amount of them is to follow the Nyquist–Shannon sampling theorem \cite{Shannon1949}. 
-It sets a lower bound for the spatial sampling rate which must be twice smaller than the smallest detail of the image and this it is possible to avoid artifact due to incorrect sampling.
+It sets a lower bound for the spatial sampling rate which must be twice smaller than the smallest detail of the image thus it is possible to avoid artifact due to incorrect sampling.
 
 The number and dimensions of pixels define the \textbf{spatial resolution} of the image which describes the smallest detail which can be observed in an image \cite{digital_image_processing_gonzales}.
-The most used measure for the spatial resolution is \textit{dpi} i.e dots per inch. The reference with the spatial unit is helpful in order to better describe the image quality rather than using solely pixels.
+The most used measure for the spatial resolution is \textit{dpi}, i.e dots per inch. The reference with the spatial unit is helpful in order to better describe the image quality rather than using solely pixels.
 A 300 dpi image is considered to be an high resolution picture for printing. \textit{Bittorf et al.} \cite{resolution_requirements} had indeed showed that there is a critical resolution of 512 dpi for the human eye. 
 Below this number two images with different dpi are promptly recognize to be of different quality. Even if the critical number depends on several conditions (purpose, subject, output device etc.), this study shows that producing images with enormous value of dpi does not necessary improve the perceived quality, but it certainly does with storage requirements.
  
 As for the spatial resolution, the \textbf{dynamic range} or intensity resolution can be defined as the smallest change in the intensity level that can be perceived \cite{digital_image_processing_gonzales}.
-The dynamic range is, in fact, quantity which describes the ratio between the highest and lowest value of the image intensities displayed \cite{dynamic_range}.
+The dynamic range is, in fact, a quantity which describes the ratio between the highest and lowest value of the image intensities displayed \cite{dynamic_range}.
 A good dynamic range avoids artifacts and distortions of the brightness representation. 
 High intensity resolution leads to higher visibility in low contrast images but could be worsen by statistical noise.
 
 \section{Natural light-reflected images}
 
-Natural light-reflected images are particular type of digital images in which the signal, recorded by the acquisition device, is visible light, an electromagnetic wave with wavelength $\lambda \in [380nm, 700nm]$.
+Natural light-reflected images are particular a type of digital images in which the signal, recorded by the acquisition device, is visible light, an electromagnetic wave with wavelength $\lambda \in [380nm, 700nm]$.
 The acquisition procedure follows Figure \ref{fig:Image_acquisition}.
 
 \begin{figure}[H] 
 \begin{center}
 \includegraphics[width=11cm]{images/Image-Acquisition-Model.png}
-\caption{\small{Representation of the image acquisition process: the light is reflected from the object, then it passes through the imaging system. The intensity is absorbed by photosensors that convert the electromagnetic signal into a grid of pixels which forms the output image.\cite{CNN_chapter13}}}\label{fig:Image_acquisition}
+\caption{\small{Representation of the image acquisition process: the light is reflected from the object, then it passes through the imaging system. The intensity is absorbed by photosensors that convert the electromagnetic signal into a grid of pixels which forms the output image \cite{CNN_chapter13}.}}\label{fig:Image_acquisition}
 \end{center}
 \end{figure}
 
@@ -130,6 +130,10 @@ In this way the dynamic range of the image, is defined by the $k$ parameter.
 If we consider a binary image, $k=1$ since there are only $2^{1}=2$ possible levels of intensity (0 or 1).
 On the other hand, for grey scale images $k$ is usually 8. As a consequence, the total image would present $2^{8}=256$ grey levels with values in $[0,255]$.
 In general, the dynamic range of these images is expressed in terms of the number of bits used to express the levels (the $k$ parameter in Equation \ref{equation_intensity_levels}).
+
+Natural light-reflected images are full-fledged medical images as other kind of images like Magnetic Resonance Imaging, Computed Tomography or Positron Emission Tomography.
+The only difference with the latters is that light-reflected images do not have standardized protocols to be performed: they can vary for angle, light conditions and distance at which they are acquired.
+Unfortunately these conditions are not yet standardized, but the information carried by light-reflected images could still be useful in lots of clinical fields.
 
 Natural light-reflected images could be colored, this practically means that their mathematical representation would slightly change.
 
@@ -150,7 +154,7 @@ Several color coordinate systems were defined in order to model the \textit{tric
 
 \begin{description}
     \item[RGB]: a combination of monochromatic primaries corresponding to red(R) = 700nm,
-    green(G) = 546.1 nm and blue 435.8 nm. It is widely used in modern digital images
+    green(G) = 546.1 nm and blue(B) = 435.8 nm. It is widely used in modern digital images.
     \item[CMY]: secondary colors like cyan(C), magenta(M) and yellow(Y) are used as base. The conversion from \textit{CMY} to \textit{RGB} is: 
     
     \begin{center}
@@ -168,10 +172,10 @@ Several color coordinate systems were defined in order to model the \textit{tric
     
     assuming the values normalized to 1.
     \item[HSV]: this model does not take in consideration pure colors. It uses hue(H), saturation(S) and value(V) to describe the possible combinations. Respectively, the three values represent the dominant color, its purity and its brightness on grey scale.
-    \item[Lab]: which combines \textit{RGB} and \textit{HSV} taking as variables the brightness(L), red-green contents(a) and yellow-blue contents(b)
+    \item[Lab]: which combines \textit{RGB} and \textit{HSV} taking as variables the brightness(L), red-green contents(a) and yellow-blue contents(b).
 \end{description}
 
-Focusing on the most common \textit{RGB} system,  we are able to represent this model based using Cartesians coordinates. Each point in the  \textit{RGB} space is projected along the axes as a combination of the primaries. Assuming the values normalize to 1 we can model some common colors:
+Focusing on the most common \textit{RGB} system,  we are able to represent this model using Cartesian coordinates. Each point in the  \textit{RGB} space is projected along the axes as a combination of the primaries. Assuming the values normalize to 1 we can model some common colors:
 
 \begin{center}
 \begin{tabular}{ c c c }
@@ -202,11 +206,10 @@ Digital images can be stored in different formats, they are suitable for particu
     \item the size of the image;
     \item the amount of metadata (information on acquisition device and procedures) storable;
     \item the integrity of the data;
-    \item the image transmission.
 \end{itemize}
 
-In several cases the images are stored in formats which benefit of compression. Compression is a method to ease image storaging and transmission, but it can cause information loss. The different compression formats are divided into two categories \cite{digital_processing_matlab}:
-on one hand, if the image can be fully reconstructed from the compressed data without loosing information, we are exploiting \textit{lossless compression}; on the other hand, if the redundant information is removed from the image, we are in the case of \textit{lossy compression}.
+In several cases the images are stored in formats which benefit of compression. Compression is a method to ease image storage and transmission, but it can cause information loss. The different compression formats are divided into two categories \cite{digital_processing_matlab}:
+on one hand, if the image can be completely reconstructed from the compressed data without losing information, we are exploiting \textit{lossless compression}; on the other hand, if the redundant information is removed from the image, we are in the case of \textit{lossy compression}.
 Both of these compression formats are useful to shrink the storage volume, but in the case of \textit{lossy compression} some data are irreparably lost, with consequent possible problems during image analysis.
 
 Data type is another fundamental variable to take into consideration when choosing a file format. 
@@ -227,10 +230,10 @@ Some of the most important image formats are represented in Figure \ref{fig:tabl
 \begin{figure}[H] 
 \begin{center}
 \includegraphics[width=11cm]{images/image_formats.png}
-\caption{\small{Most used images' formats with their compression properties, from \cite{digital_processing_matlab}}}\label{fig:table_formats}
+\caption{\small{Most used images formats with their compression properties, from \cite{digital_processing_matlab}.}}\label{fig:table_formats}
 \end{center}
 \end{figure}
-JPG is the most used format for digital cameras and smartphones, thanks to the huge reduction on image storaging. It can store 24-bit RGB color images but its lossy compression does not suite well for image processing applications. By contrast, the PNG format is the most used in digital images analysis due to its lossless compression. It  also overcomes the problem with the GIF format (capable of storing only 256 colors) allowing two storage systems of 24/48 bits per pixel\cite{roelofs1999png}, such bit dept is able to reproduce up to 16 milions colors.
+JPG is the most used format for digital cameras and smartphones, thanks to the huge reduction on image storage. It can store 24-bit RGB color images but its lossy compression does not suit well for image processing applications. By contrast, the PNG format is the most used in digital images analysis due to its lossless compression. It  also overcomes the problem with the GIF format (capable of storing only 256 colors) allowing two storage systems of 24/48 bits per pixel \cite{roelofs1999png}, such bit dept is able to reproduce up to 16 milions colors.
 
  
 \end{document}

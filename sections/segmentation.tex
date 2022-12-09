@@ -65,7 +65,7 @@ Edge detection can be performed according to two approaches: \textit{histogram} 
                \end{equation}
                \item measure the magnitude of the gradient vector in the form of:
                \begin{equation}
-                     \bigtriangledown f = \left[ \frac{\partial f}{\partial x}^{2} + \frac{\partial f}{\partial y}^{2} \right]^{1/2}
+                     |\bigtriangledown f| = \left[ \frac{\partial f}{\partial x}^{2} + \frac{\partial f}{\partial y}^{2} \right]^{1/2}
                \end{equation}
                \item keep edges with a gradient magnitude greater than a certain threshold $I_{t}$. 
                Higher value of magnitude should be placed on the position of stronger edges;
@@ -77,7 +77,7 @@ These are the basic steps for edge detection by calculating the gradient vector 
 On the basis of the previous general scheme, several methods were developed and upgraded through filter application or metrics evaluation.
 One of the most renowned is Canny algorithm \cite{Canny}. 
 It follows the five point algorithm with some improvements: firstly, it applies a  smooth Gaussian filter to the image and, at the end, it picks only edge points which are connected with other strong edges. 
-Canny approach allows very good performances in spotting real edges and in reducing noise problems\cite{saif2016gradient}.
+Canny approach allows very good performances in spotting real edges and in reducing noise problems \cite{saif2016gradient}.
 
 The two main drawbacks of edge-detection segmentation are the ones which were attempted to be overcame with Canny edge: noise, false edge detection. In fact, noise could affect badly performances and induce the detection of weak edges which do not represent any meaningful separation among regions.
 
@@ -118,17 +118,17 @@ The main limitations of the threshold techniques are that, in general, the thres
     \item manually based on some prior knowledge;
     \item automatically through extraction of image information.
 \end{itemize}
-In both cases the selection of an appropriate value is not easy and it needs a lot of fine tuning to be considered effective\cite{automated_segm_tech}. Moreover it cannot be applied to color images for each channel at the same time and, by working with the histogram, it loses spatial information which make this method susceptible to noise \cite{segmentation_review_1}.
+In both cases the selection of an appropriate value is not easy and it needs a lot of fine tuning to be considered effective \cite{automated_segm_tech}. Moreover it cannot be applied to color images for each channel at the same time and, by working with the histogram, it loses spatial information which make this method susceptible to noise \cite{segmentation_review_1}.
 
 \subsubsection{\large{Region-based segmentation}}
 
-Region-based techniques are different from the previous: they are able to define regions in the image, grouping or separating pixels while following a merging/splitting criteria\cite{kaganami2009region-based}.
+Region-based techniques are different from the previous: they are able to define regions in the image, grouping or separating pixels while following a merging/splitting criteria \cite{kaganami2009region-based}.
 They try to spot homogeneity among pixel, searching for similar properties (most commonly grey levels) by iteratively checking the criteria conditions to add or subtract pixels from the current region.
 Once the homogeneity criteria $C$ is set, two methods are developed in two opposite specifications:
 \begin{description}
 \item[region growing] :  some \quotes{seeds} pixels are selected in the image. 
 Neighboring pixels are grouped with the previous ones according to the criteria (i.e. similar grey level or colors) until a predetermined stopping condition is triggered;
-\item[region splitting and merging] : the image is divided into a set of disconnected regions, then adjacent regions are checked, through $C$, to belong to the same class\cite{segmentation_review_1}.
+\item[region splitting and merging] : the image is divided into a set of disconnected regions, then adjacent regions are checked, through $C$, to belong to the same class \cite{segmentation_review_1}.
 This method can be described as a two step process: initially the image is split in  
 into sets as long as $C$ is false; when no more division can be performed, connected region are controlled and, if their union satisfies $C$, they are merged. 
 \end{description}
@@ -140,13 +140,13 @@ The region-based algorithms show some risks of segmenting regions which belong t
 The last group of techniques are defined as special-theory based, since they apply knowledge belonging to different fields to the task of segmentation. 
 These methods can be implemented with supervised or unsupervised algorithms: the first ones require human interaction during all the process of segmentation for labelling or adapting model parameters; on the other hand, the last ones are able to extract meaningful information directly from pure data without needing external intervention. 
  
-Below are described \textit{clustering} and \textit{neural networks}, respectively belonging to unsupervised and supervised categories.
+Below \textit{clustering} and \textit{neural networks} are described, they belong to unsupervised and supervised categories, respectively.
 
 
 \subsubsection{{Clustering}}
 
 Clustering algorithms try to partition data points into a pre-determined number of sets, named clusters.
-They exploits the projection of information into an \textit{n-dimensional} space called \textit{latent space}\cite{automated_segm_tech}. 
+They exploits the projection of information into an \textit{n-dimensional} space called \textit{latent space} \cite{automated_segm_tech}. 
 This peculiar space assigns a position to each point based on numerous features (grey-level, texture, color etc.). 
 Then a similarity metric $S_{m}$ is defined in order to calculate the $n-dimensional$ distance among points.
 Clustering try to maximize $S_{m}$ between same class pixels and to minimize $S_{m}$ separated classes in an iterative procedure \cite{clustering}.

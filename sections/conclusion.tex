@@ -2,20 +2,22 @@
 \usepackage[english]{babel}
 \graphicspath{{\subfix{../images}}}
 \begin{document}
-The data analyzed were natural light-reflected images acquired during clinical practice.
-These image show high heterogeneity, presenting different resolutions, light conditions, and backgrounds. 
-The most simple segmentation solutions, described in Chapter \ref{chap:segmentation}, could not be applied due to non-standardized condition during image acquisition. Thus the choice of using CNNs was reinforced by the TL and ASSL training strategies which compensate the lack of annotated data, universally known as the main drawback for deep learning models.
+The analyzed data were natural light-reflected images acquired during clinical practice.
+These images show high heterogeneity, presenting different resolutions, light conditions, and backgrounds. 
+The most simple segmentation solutions, described in Chapter \ref{chap:segmentation}, could not be applied due to non-standardized conditions during image acquisition. 
+Thus, the choice of using CNNs was reinforced by the TL and ASSL training strategies which compensate the lack of annotated data, universally known as the main drawback for deep learning models.
 
-The aim of this work was to develop a model for the automatic segmentation of pet-wound images starting with no manually labelled sample and using only TL and ASSL training strategy. 
+The aim of this work was to develop a model for the automatic segmentation of animal wound images starting without any manually labelled sample and using only TL and ASSL training strategy. 
 The combination of the two training strategies proved their effectiveness in generating large amounts of annotated samples with the minimal human intervention. 
 This procedure speeds up the validation procedure by clinicians and it is proven to be a viable solution in medical analyses.
-This work may represent a starting point for the development of automate wound management in veterinary medicine for clinical and research activities. More over the robustness of the TL procedure, combined with the ASSL one, could become a viable and time-efficient solution for low labelled set of data.
+This work may represent a starting point for the development of automate wound management in veterinary medicine for clinical and research activities. Moreover, the robustness of the TL procedure, combined with the ASSL one, could become a viable and time-efficient solution for low labelled sets of data.
 
 We found as optimal deep learning model for the ASSL training strategy the EfficientNet-b3 U-Net model, comparing its performances with the lighter MobileNet-v2 U-Net one.
-We also numerically proved that the complexity of wound segmentation does not require complex deep learning models, showing compatible performances between the EfficientNet-b3 U-Net and the MobileNet-v2 U-Net architectures when trained on larger set of annotated images. 
-The inclusion of TL components in the ASSL pipeline, indeed, strengthens the generalization capabilities of the trained models.
+In addition, we proved numerically that the complexity of wound segmentation does not require complex deep learning models, showing compatible performances between the EfficientNet-b3 U-Net and the MobileNet-v2 U-Net architectures when trained on larger set of annotated images. 
+Indeed, the inclusion of TL components in the ASSL pipeline strengthens the generalization capabilities of the trained models.
 
-The results obtained in this paper stands as a reliable solution to perform a correct wound image segmentation.  
-With this work we aim to minimize the labeling effort of the clinicians, requiring no starting manual annotation at all. Furthermore The MobileNet-v2 U-Net performances suggest that the future direction of this field could focus on implementations of smartphone-based technologies. 
+The results obtained in this thesis stands as a reliable solution to perform a correct wound image segmentation and they are currently main topics of a series of articles submitted to international scientific magazines. 
+With this work we aim to minimize the labeling effort of the clinicians, requiring no starting manual annotation at all. The segmentation results can be considered as a robust starting point in the radiomic pipeline for future classification and features extraction works.
+Furthermore, the MobileNet-v2 U-Net performances suggest that the future direction of this field could focus on implementations of smartphone-based technologies as well as the standardization of light-reflected images as acknowledge medical images.
 
 \end{document}

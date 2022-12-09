@@ -1,0 +1,34 @@
+\documentclass[../main.tex]{subfiles}
+\usepackage[english]{babel}
+\graphicspath{{\subfix{../images}}}
+\begin{document}
+\section*{Abstract}
+ Wound management is a fundamental task in standard clinical practice. Automated solutions already exist for humans, but there is a lack of applications on wound management for pets.
+ The importance of a precise and efficient wound assessment is helpful to improve diagnosis and to increase the effectiveness of treatment plans for the chronic wounds.
+
+The goal of the research was to propose an automated pipeline capable of segmenting natural light-reflected wound images of animals.
+Two datasets composed by light-reflected images were used in this work: Deepskin dataset, 1564 human wound images obtained during routine dermatological exams, with 145 manual annotated images; Petwound dataset, a set of 290 wound photos of dogs and cats with 0 annotated images.
+Two implementations of U-Net Convolutioal Neural Network model were proposed for the automated segmentation.
+Active Semi-Supervised Learning techniques were applied for human-wound images to perform segmentation from 10\% of annotated images. Then the same models were trained, via Transfer Learning, adopting an Active Semi-Supervised Learning to unlabelled animal-wound images.
+The combination of the two training strategies proved their
+effectiveness in generating large amounts of annotated samples (94\% of Deepskin, 80\% of PetWound) with the minimal human intervention.
+The correctness of automated segmentation were evaluated by clinical experts at each round of training thus we can assert that the results obtained in this thesis stands as a reliable solution to perform a correct wound image segmentation.
+
+The use of Transfer Learning and Active Semi-Supervied Learning allows to minimize labelling effort from clinicians, even requiring no starting manual annotation at all. Moreover the performances of the model with limited number of parameters suggest the implementation of smartphone-based application to this topic, helping the future standardization of light-reflected images as acknowledge medical images.
+
+
+\newpage
+\section*{Sommario}
+La gestione delle ferite è un compito fondamentale nella pratica clinica standard. Esistono già soluzioni automatizzate per gli esseri umani, ma mancano applicazioni sulla gestione delle ferite per gli animali domestici.
+ L'importanza di una precisa ed efficiente valutazione della ferita  è utile per migliorare la diagnosi e aumentare l'efficacia dei piani di trattamento per le ferite croniche.
+ 
+L'obiettivo della presente tesi è di proporre una pipeline automatizzata in grado di segmentare immagini di ferite animali.
+Nel presente lavoro sono stati utilizzati due set di immagini naturali: Deepskin, 1564 immagini di ferite umane ottenute durante esami dermatologici di routine, con 145 immagini annotate manualmente; Petwound, un set di 290 foto di ferite di cani e gatti con 0 immagini annotate.
+Sono state proposte due implementazioni del modello U-Net Convolutioal Neural Network per la segmentazione automatizzata.
+La tecnica di Active Semi-Supervised Learning è stata applicata alle immagini di ferite umane per eseguire la segmentazione, partendo dal 10\% delle immagini annotate.
+Successivamente gli stessi modelli sono stati addestrati, tramite Transfer Learning in combinazione con Active Semi-Supervised Learning per immagini di ferite animali, delle quali non erano presenti segmentazioni manuali.
+La combinazione delle due strategie di allenamento si è dimostrata efficace nella generazione di grandi quantità di maschere di segmentazione (94\% di Deepskin, 80\% di PetWound) richiedendo il minimo intervento umano.
+La correttezza della segmentazione automatizzata è stata valutata da esperti clinici ad ogni round di apprendimento, pertanto possiamo affermare che i risultati ottenuti in questa tesi rappresentino una soluzione affidabile per eseguire una corretta segmentazione di immagini naturali di ferite.
+
+L'uso del Transfer Learning e dell'Active Semi-Supervied Learning consente di ridurre al minimo lo sforzo di segmentazione manuale da parte dei medici, arrivando perfino a non richiedere alcuna annotazione manuale iniziale. Inoltre le prestazioni del modello con minor numero di parametri suggeriscono la possibile implementazione di applicazioni smartphone che riescano a eseguire questo task. Tale sviluppo potrà aiutare la futura standardizzazione delle immagini naturali come immagini mediche a tutti gli effetti.
+\end{document}
